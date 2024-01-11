@@ -16,7 +16,7 @@ import { Send } from "@mui/icons-material";
 import axios from "axios";
 import { Client } from "twilio-chat";
 import { useLocation, useNavigate } from "react-router-dom";
-import ChatItem from "../componnets/ChatItem";
+import ChatItem from "../components/ChatItem";
 import { tokenUrl } from "../apiUrl/apiUrl";
 
 interface State {
