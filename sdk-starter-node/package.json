@@ -2,9 +2,10 @@
   "name": "sdk-starter-node",
   "version": "1.0.0",
   "description": "Starter Server Application for Node.js",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "NODE_ENV=test && jest"
   },
   "repository": {

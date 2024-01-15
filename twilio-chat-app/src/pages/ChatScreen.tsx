@@ -46,6 +46,7 @@ interface Styles {
 }
 
 const ChatScreen = () => {
+  const tokenApiUrl = import.meta.env.VITE_APP_NODE_ENV==='production' ? import.meta.env.VITE_APP_TokenUrl : tokenUrl ;
   const [state, setState] = useState<State>({
     token: "",
     text: "",
@@ -82,7 +83,6 @@ const ChatScreen = () => {
         dateCreated: message.dateCreated,
       };
     });
-    console.log("Previous messages:", formattedMessages);
 
     setState((prevState) => ({
       ...prevState,
@@ -117,7 +117,7 @@ const ChatScreen = () => {
   };
 
   const getToken = async (email: string) => {
-    const response = await axios.get(`${tokenUrl}${email}`);
+    const response = await axios.get(`${tokenApiUrl}/${email}`);
     const { data } = response;
     return data.token;
   };
@@ -145,9 +145,7 @@ const ChatScreen = () => {
       } catch {
         throw new Error("Unable to get token, please reload this page");
       }
-      // finally {
-      //   setState((prev) => ({ ...prev, loading: false }));
-      // }
+      
       const client = new Client(token);
       client.on("tokenAboutToExpire", async () => {
         const newToken = await getToken(email);
